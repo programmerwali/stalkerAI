@@ -1217,7 +1217,7 @@ def main():
                 it just made it better at finding things 😏
             </p>
             <p style="color: #666; font-size: 0.9rem;">
-                Powered by Wali • Gemini AI • Google Lens • Azure Cloud
+                Powered by Wali 
             </p>
         </div>
         """,
