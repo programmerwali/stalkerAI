@@ -19,7 +19,7 @@ load_dotenv()
 
 # Configure the page
 st.set_page_config(
-    page_title="GeoGuess AI - Stalking Made Easier 🕵️‍♂️",
+    page_title="GeoGuess AI - See exactly where that picture was taken 🕵️‍♂️",
     page_icon="🕵️‍♂️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -973,7 +973,7 @@ def display_result(result: Dict[str, Any], title: str, tab_class: str):
 def main():
     # Title and description 
     st.markdown("<h1 class='main-header'>🕵️‍♂️ GeoGuess AI</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='slogan'>\"Stalking Made Easier\" </p>", unsafe_allow_html=True)
+    st.markdown("<p class='slogan'>\"See exactly where that picture was taken\" </p>", unsafe_allow_html=True)
     st.markdown("<p class='subtitle'>Drop a photo. We’ll pull the thread and see where it leads. <br>Because sometimes you need to know where that coffee shop is, or... other reasons </p>", unsafe_allow_html=True)
     
  
