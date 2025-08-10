@@ -25,44 +25,383 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# st.markdown("""
+# <style>
+#     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+#     :root {
+#         --primary-bg: #0f0511;
+#         --secondary-bg: #1a0e15;
+#         --accent-bg: #2a1821;
+#         --card-bg: rgba(42, 24, 33, 0.9);
+#         --glass-bg: rgba(252, 227, 236, 0.08);
+#         --border-color: rgba(252, 227, 236, 0.15);
+#         --text-primary: #FCE3EC;
+#         --text-secondary: rgba(252, 227, 236, 0.8);
+#         --text-muted: rgba(252, 227, 236, 0.9);
+#         --accent-red: #B3124A;
+#         --accent-green: #C5D473;
+#         --accent-purple: #CD5BBB;
+#         --success-color: #C5D473;
+#         --warning-color: #CD5BBB;
+#         --error-color: #B3124A;
+#     }
+    
+#     .stApp {
+#         background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, #241218 100%);
+#         font-family: 'Inter', sans-serif;
+#         color: var(--text-primary);
+#     }
+    
+#     .main-header {
+#         text-align: center;
+#         background: linear-gradient(45deg, var(--accent-red), var(--accent-purple), var(--accent-green));
+#         -webkit-background-clip: text;
+#         -webkit-text-fill-color: transparent;
+#         background-clip: text;
+#         font-size: 3.5rem;
+#         font-weight: 700;
+#         margin-bottom: 0.5rem;
+#         text-shadow: 0 0 30px rgba(179, 18, 74, 0.4);
+#     }
+    
+#     .slogan {
+#         text-align: center;
+#         color: var(--text-secondary);
+#         font-size: 1.2rem;
+#         font-weight: 400;
+#         margin-bottom: 2rem;
+#         font-style: italic;
+#     }
+    
+#     .subtitle {
+#         text-align: center;
+#         color: var(--text-secondary);
+#         font-size: 1.1rem;
+#         margin-bottom: 3rem;
+#         padding: 0 2rem;
+#         line-height: 1.6;
+#     }
+    
+#     .result-container {
+#         background: var(--card-bg);
+#         backdrop-filter: blur(12px);
+#         border: 1px solid var(--border-color);
+#         padding: 2rem;
+#         border-radius: 16px;
+#         margin: 1.5rem 0;
+#         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+#         color: var(--text-primary);
+#     }
+    
+#     .confidence-high {
+#         color: var(--success-color);
+#         font-weight: 600;
+#         text-shadow: 0 0 8px rgba(197, 212, 115, 0.5);
+#     }
+#     .confidence-medium {
+#         color: var(--warning-color);
+#         font-weight: 600;
+#         text-shadow: 0 0 8px rgba(205, 91, 187, 0.5);
+#     }
+#     .confidence-low {
+#         color: var(--error-color);
+#         font-weight: 600;
+#         text-shadow: 0 0 8px rgba(179, 18, 74, 0.5);
+#     }
+    
+#     .stButton > button {
+#         width: 100%;
+#         background: linear-gradient(45deg, var(--accent-red), var(--accent-purple), var(--accent-green)) !important;
+#         color: var(--text-primary) !important;
+#         border-radius: 12px !important;
+#         border: none !important;
+#         padding: 1rem 2rem !important;
+#         font-size: 16px !important;
+#         font-weight: 600 !important;
+#         transition: all 0.3s ease !important;
+#         box-shadow: 0 4px 15px rgba(179, 18, 74, 0.4) !important;
+#     }
+    
+#     .stButton > button:hover {
+#         transform: translateY(-2px) !important;
+#         box-shadow: 0 8px 25px rgba(179, 18, 74, 0.6) !important;
+#     }
+    
+#     .method-tab {
+#         padding: 2rem;
+#         border-radius: 16px;
+#         margin: 1rem 0;
+#         backdrop-filter: blur(12px);
+#         border: 1px solid var(--border-color);
+#         transition: all 0.3s ease;
+#         color: var(--text-primary);
+#     }
+    
+#     .method-tab:hover {
+#         transform: translateY(-3px);
+#         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+#     }
+    
+#     .gemini-tab {
+#         background: linear-gradient(135deg, rgba(205, 91, 187, 0.15), rgba(197, 212, 115, 0.1));
+#         border-left: 4px solid var(--accent-purple);
+#     }
+    
+#     .googlelens-tab {
+#         background: linear-gradient(135deg, rgba(179, 18, 74, 0.15), rgba(205, 91, 187, 0.1));
+#         border-left: 4px solid var(--accent-red);
+#     }
+    
+#     .debug-section {
+#         background: var(--accent-bg);
+#         border: 1px solid var(--border-color);
+#         border-radius: 12px;
+#         padding: 1.5rem;
+#         margin: 1.5rem 0;
+#         backdrop-filter: blur(8px);
+#         color: var(--text-primary);
+#     }
+    
+#     .url-box {
+#         background: var(--primary-bg);
+#         padding: 1rem;
+#         border-radius: 8px;
+#         font-family: 'Fira Code', monospace;
+#         word-break: break-all;
+#         color: var(--accent-green);
+#         border: 1px solid rgba(197, 212, 115, 0.3);
+#         font-size: 0.9rem;
+#     }
+    
+#     .location-match {
+#         background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(205, 91, 187, 0.1));
+#         border: 1px solid rgba(197, 212, 115, 0.3);
+#         border-radius: 12px;
+#         padding: 1rem;
+#         margin: 0.5rem 0;
+#         backdrop-filter: blur(8px);
+#         color: var(--text-primary);
+#     }
+    
+#     /* Sidebar styling */
+#     .css-1d391kg, .css-1lcbmhc {
+#         background: rgba(26, 26, 36, 0.95) !important;
+#         backdrop-filter: blur(20px) !important;
+#     }
+    
+#     /* Sidebar text */
+#     .css-1d391kg .stMarkdown, .css-1lcbmhc .stMarkdown {
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Select box styling */
+#     .stSelectbox > div > div {
+#         background-color: var(--accent-bg) !important;
+#         color: var(--text-primary) !important;
+#         border: 1px solid var(--border-color) !important;
+#         border-radius: 8px !important;
+#     }
+    
+#     .stSelectbox > div > div > div {
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Progress bar */
+#     .stProgress > div > div > div > div {
+#         background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-green)) !important;
+#     }
+    
+#     /* Text input styling */
+#     .stTextInput > div > div > input {
+#         background: var(--accent-bg) !important;
+#         color: var(--text-primary) !important;
+#         border: 1px solid var(--border-color) !important;
+#         border-radius: 8px !important;
+#     }
+    
+#     .stTextInput > div > div > input::placeholder {
+#         color: var(--text-muted) !important;
+#     }
+    
+#     /* File uploader styling */
+#     .stFileUploader > div {
+#         border-radius: 16px !important;
+#         border: 2px dashed rgba(205, 91, 187, 0.4) !important;
+#         background: var(--glass-bg) !important;
+#         padding: 2rem !important;
+#     }
+    
+#     .upload-area {
+#         border: 2px dashed var(--border-color);
+#         border-radius: 16px;
+#         padding: 2rem;
+#         text-align: center;
+#         background: var(--glass-bg);
+#         backdrop-filter: blur(12px);
+#         transition: all 0.3s ease;
+#         color: var(--text-secondary);
+#     }
+    
+#     .upload-area:hover {
+#         border-color: var(--accent-purple);
+#         background: rgba(205, 91, 187, 0.05);
+#         color: var(--text-primary);
+#     }
+    
+#     .emoji-large {
+#         font-size: 3rem;
+#         margin: 1rem 0;
+#         opacity: 0.8;
+#     }
+    
+#     .feature-card {
+#         background: var(--card-bg);
+#         border: 1px solid var(--border-color);
+#         border-radius: 12px;
+#         padding: 1.5rem;
+#         margin: 1rem 0;
+#         backdrop-filter: blur(12px);
+#         transition: all 0.3s ease;
+#         color: var(--text-primary);
+#     }
+    
+#     .feature-card:hover {
+#         transform: translateY(-3px);
+#         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+#         border-color: var(--accent-purple);
+#     }
+    
+#     .success-message {
+#         background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(205, 91, 187, 0.1));
+#         border: 1px solid rgba(197, 212, 115, 0.3);
+#         border-radius: 12px;
+#         padding: 1rem;
+#         color: var(--success-color);
+#         font-weight: 500;
+#     }
+    
+#     .warning-message {
+#         background: linear-gradient(135deg, rgba(205, 91, 187, 0.15), rgba(179, 18, 74, 0.1));
+#         border: 1px solid rgba(205, 91, 187, 0.3);
+#         border-radius: 12px;
+#         padding: 1rem;
+#         color: var(--warning-color);
+#         font-weight: 500;
+#     }
+    
+#     .joe-quote {
+#         font-style: italic;
+#         color: var(--text-muted);
+#         text-align: center;
+#         margin: 2rem 0;
+#         font-size: 1.1rem;
+#         opacity: 0.9;
+#     }
+    
+#     .neon-text {
+#         text-shadow: 0 0 8px rgba(205, 91, 187, 0.6);
+#         color: var(--accent-purple);
+#         font-weight: 600;
+#     }
+    
+#     /* Additional text elements */
+#     .stMarkdown p, .stMarkdown div {
+#         color: var(--text-primary);
+#     }
+    
+#     .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+#         color: var(--text-primary);
+#     }
+    
+#     /* Metric styling */
+#     .css-1wivap2, .css-1wivap2 > div {
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Expander styling */
+#     .streamlit-expanderHeader {
+#         background: var(--accent-bg) !important;
+#         color: var(--text-primary) !important;
+#         border-radius: 8px !important;
+#     }
+    
+#     .streamlit-expanderContent {
+#         background: var(--card-bg) !important;
+#         border: 1px solid var(--border-color) !important;
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Tab styling */
+#     .stTabs [data-baseweb="tab-list"] {
+#         gap: 8px;
+#     }
+    
+#     .stTabs [data-baseweb="tab"] {
+#         background: var(--accent-bg) !important;
+#         color: var(--text-secondary) !important;
+#         border-radius: 8px !important;
+#         border: 1px solid var(--border-color) !important;
+#     }
+    
+#     .stTabs [aria-selected="true"] {
+#         background: var(--accent-purple) !important;
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Radio button styling */
+#     .stRadio > div {
+#         color: var(--text-primary) !important;
+#     }
+    
+#     /* Checkbox styling */
+#     .stCheckbox > label {
+#         color: var(--text-primary) !important;
+#     }
+# </style>
+
+    
+# """, unsafe_allow_html=True)
+
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
     :root {
-        --primary-bg: #0f0511;
-        --secondary-bg: #1a0e15;
-        --accent-bg: #2a1821;
-        --card-bg: rgba(42, 24, 33, 0.9);
-        --glass-bg: rgba(252, 227, 236, 0.08);
-        --border-color: rgba(252, 227, 236, 0.15);
-        --text-primary: #FCE3EC;
-        --text-secondary: rgba(252, 227, 236, 0.8);
-        --text-muted: rgba(252, 227, 236, 0.6);
+        --primary-bg: #0a0f1a;
+        --secondary-bg: #0e1520;
+        --accent-bg: #1a2332;
+        --card-bg: rgba(26, 35, 50, 0.9);
+        --glass-bg: rgba(173, 216, 230, 0.08);
+        --border-color: rgba(173, 216, 230, 0.15);
+        --text-primary: #e8f4f8;
+        --text-secondary: rgba(232, 244, 248, 0.8);
+        --text-muted: rgba(232, 244, 248, 0.9);
         --accent-red: #B3124A;
         --accent-green: #C5D473;
-        --accent-purple: #CD5BBB;
+        --accent-purple: #8B4513;
+        --accent-blue: #87CEEB;
         --success-color: #C5D473;
-        --warning-color: #CD5BBB;
+        --warning-color: #8B4513;
         --error-color: #B3124A;
     }
     
     .stApp {
-        background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, #241218 100%);
+        background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, #1e2a3a 100%);
         font-family: 'Inter', sans-serif;
         color: var(--text-primary);
     }
     
     .main-header {
         text-align: center;
-        background: linear-gradient(45deg, var(--accent-red), var(--accent-purple), var(--accent-green));
+        background: linear-gradient(45deg, var(--accent-red), var(--accent-blue), var(--accent-green));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         font-size: 3.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        text-shadow: 0 0 30px rgba(179, 18, 74, 0.4);
+        text-shadow: 0 0 30px rgba(135, 206, 235, 0.4);
     }
     
     .slogan {
@@ -102,7 +441,7 @@ st.markdown("""
     .confidence-medium {
         color: var(--warning-color);
         font-weight: 600;
-        text-shadow: 0 0 8px rgba(205, 91, 187, 0.5);
+        text-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
     }
     .confidence-low {
         color: var(--error-color);
@@ -112,7 +451,7 @@ st.markdown("""
     
     .stButton > button {
         width: 100%;
-        background: linear-gradient(45deg, var(--accent-red), var(--accent-purple), var(--accent-green)) !important;
+        background: linear-gradient(45deg, var(--accent-red), var(--accent-blue), var(--accent-green)) !important;
         color: var(--text-primary) !important;
         border-radius: 12px !important;
         border: none !important;
@@ -120,12 +459,12 @@ st.markdown("""
         font-size: 16px !important;
         font-weight: 600 !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(179, 18, 74, 0.4) !important;
+        box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4) !important;
     }
     
     .stButton > button:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 25px rgba(179, 18, 74, 0.6) !important;
+        box-shadow: 0 8px 25px rgba(135, 206, 235, 0.6) !important;
     }
     
     .method-tab {
@@ -144,12 +483,12 @@ st.markdown("""
     }
     
     .gemini-tab {
-        background: linear-gradient(135deg, rgba(205, 91, 187, 0.15), rgba(197, 212, 115, 0.1));
-        border-left: 4px solid var(--accent-purple);
+        background: linear-gradient(135deg, rgba(135, 206, 235, 0.15), rgba(197, 212, 115, 0.1));
+        border-left: 4px solid var(--accent-blue);
     }
     
     .googlelens-tab {
-        background: linear-gradient(135deg, rgba(179, 18, 74, 0.15), rgba(205, 91, 187, 0.1));
+        background: linear-gradient(135deg, rgba(179, 18, 74, 0.15), rgba(135, 206, 235, 0.1));
         border-left: 4px solid var(--accent-red);
     }
     
@@ -175,7 +514,7 @@ st.markdown("""
     }
     
     .location-match {
-        background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(205, 91, 187, 0.1));
+        background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(139, 69, 19, 0.1));
         border: 1px solid rgba(197, 212, 115, 0.3);
         border-radius: 12px;
         padding: 1rem;
@@ -186,7 +525,7 @@ st.markdown("""
     
     /* Sidebar styling */
     .css-1d391kg, .css-1lcbmhc {
-        background: rgba(26, 26, 36, 0.95) !important;
+        background: rgba(26, 35, 50, 0.95) !important;
         backdrop-filter: blur(20px) !important;
     }
     
@@ -209,7 +548,7 @@ st.markdown("""
     
     /* Progress bar */
     .stProgress > div > div > div > div {
-        background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-green)) !important;
+        background: linear-gradient(90deg, var(--accent-red), var(--accent-blue), var(--accent-green)) !important;
     }
     
     /* Text input styling */
@@ -227,7 +566,7 @@ st.markdown("""
     /* File uploader styling */
     .stFileUploader > div {
         border-radius: 16px !important;
-        border: 2px dashed rgba(205, 91, 187, 0.4) !important;
+        border: 2px dashed rgba(139, 69, 19, 0.4) !important;
         background: var(--glass-bg) !important;
         padding: 2rem !important;
     }
@@ -245,7 +584,7 @@ st.markdown("""
     
     .upload-area:hover {
         border-color: var(--accent-purple);
-        background: rgba(205, 91, 187, 0.05);
+        background: rgba(139, 69, 19, 0.05);
         color: var(--text-primary);
     }
     
@@ -273,7 +612,7 @@ st.markdown("""
     }
     
     .success-message {
-        background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(205, 91, 187, 0.1));
+        background: linear-gradient(135deg, rgba(197, 212, 115, 0.15), rgba(139, 69, 19, 0.1));
         border: 1px solid rgba(197, 212, 115, 0.3);
         border-radius: 12px;
         padding: 1rem;
@@ -282,8 +621,8 @@ st.markdown("""
     }
     
     .warning-message {
-        background: linear-gradient(135deg, rgba(205, 91, 187, 0.15), rgba(179, 18, 74, 0.1));
-        border: 1px solid rgba(205, 91, 187, 0.3);
+        background: linear-gradient(135deg, rgba(139, 69, 19, 0.15), rgba(179, 18, 74, 0.1));
+        border: 1px solid rgba(139, 69, 19, 0.3);
         border-radius: 12px;
         padding: 1rem;
         color: var(--warning-color);
@@ -300,7 +639,7 @@ st.markdown("""
     }
     
     .neon-text {
-        text-shadow: 0 0 8px rgba(205, 91, 187, 0.6);
+        text-shadow: 0 0 8px rgba(139, 69, 19, 0.6);
         color: var(--accent-purple);
         font-weight: 600;
     }
@@ -345,7 +684,7 @@ st.markdown("""
     }
     
     .stTabs [aria-selected="true"] {
-        background: var(--accent-purple) !important;
+        background: var(--accent-blue) !important;
         color: var(--text-primary) !important;
     }
     
@@ -357,6 +696,27 @@ st.markdown("""
     /* Checkbox styling */
     .stCheckbox > label {
         color: var(--text-primary) !important;
+    }
+    
+    /* Change pink checkboxes and radio buttons to brown */
+    .stCheckbox svg, .stRadio svg {
+        fill: #8B4513 !important;
+    }
+    
+    /* Sidebar checkbox and radio button colors */
+    .css-1d391kg .stCheckbox svg, 
+    .css-1lcbmhc .stCheckbox svg,
+    .css-1d391kg .stRadio svg,
+    .css-1lcbmhc .stRadio svg {
+        fill: #8B4513 !important;
+    }
+            
+    section[data-testid="stSidebar"] {
+    background-color: #8B4513 !important;
+    color: white !important;
+}
+    section[data-testid="stSidebar"] * {
+        color: white !important;
     }
 </style>
 
@@ -995,7 +1355,7 @@ def main():
         st.markdown("### 🎯 **Investigation Methods**")
         use_gemini = st.checkbox("🧠 Deploy AI Visual Analysis", value=True)
         use_google_lens = st.checkbox("🔍 Use Reverse Image Search", value=True)
-        show_debug = st.checkbox("🐛 Show Debug Console", value=False)
+        # show_debug = st.checkbox("🐛 Show Debug Console", value=False)
         
         # Validation with fun messages
         # apis_configured = bool(gemini_api_key) if use_gemini else True
@@ -1150,8 +1510,8 @@ def main():
                     display_result(results['google_lens'], "🔍 Internet Sleuth Report", "googlelens-tab")
                 
                 # Debug Information
-                if show_debug and (image_url or serpapi_data or extracted_info):
-                    display_debug_info(image_url or "Not available", serpapi_data, extracted_info)
+                # if show_debug and (image_url or serpapi_data or extracted_info):
+                #     display_debug_info(image_url or "Not available", serpapi_data, extracted_info)
                 
                 # Comparison and recommendation with enhanced styling
                 if len(results) > 1:
